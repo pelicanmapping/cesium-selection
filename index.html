@@ -62,6 +62,8 @@
 
     <script>
 
+    var selectedMaterial = new Cesium.ColorMaterialProperty(Cesium.Color.YELLOW.withAlpha(0.5));
+
     function entityClick(e) {
         var id = e.id;
         var entity = viewer.entities.getById(id);
@@ -77,9 +79,95 @@
 
       if (selected) {
         $("#" + entity.id).addClass("selected");
+
+        if (entity.polygon) {
+          entity.polygon._prevMaterial = entity.polygon.material;
+          entity.polygon.material = selectedMaterial;
+        }
+
+        if ( entity.rectangle ) {
+          entity.rectangle._prevMaterial = entity.rectangle.material;
+          entity.rectangle.material = selectedMaterial;
+        }
+
+        if ( entity.polyline ) {
+          entity.polyline._prevMaterial = entity.polyline.material;
+          entity.polyline.material = selectedMaterial;
+        }
+
+        if ( entity.polylineVolume ) {
+          entity.polylineVolume._prevMaterial = entity.polylineVolume.material;
+          entity.polylineVolume.material = selectedMaterial;
+        }
+
+        if ( entity.box ) {
+          entity.box._prevMaterial = entity.box.material;
+          entity.box.material = selectedMaterial;
+        }
+
+        if ( entity.ellipsoid ) {
+          entity.ellipsoid._prevMaterial = entity.ellipsoid.material;
+          entity.ellipsoid.material = selectedMaterial;
+        }
+
+        if ( entity.wall ) {
+          entity.wall._prevMaterial = entity.wall.material;
+          entity.wall.material = selectedMaterial;
+        }
+
+        if ( entity.cylinder ) {
+          entity.cylinder._prevMaterial = entity.cylinder.material;
+          entity.cylinder.material = selectedMaterial;
+        }
+
+        if ( entity.ellipse ) {
+          entity.ellipse._prevMaterial = entity.ellipse.material;
+          entity.ellipse.material = selectedMaterial;
+        }
+
       }
       else {
         $("#" + entity.id).removeClass("selected");
+
+        if (entity.polygon) {
+          entity.polygon.material = entity.polygon._prevMaterial;
+          entity.polygon._prevMaterial = null;
+        }
+
+        if (entity.rectangle) {
+          entity.rectangle.material = entity.rectangle._prevMaterial;
+          entity.rectangle._prevMaterial = null;
+        }
+
+        if (entity.polylineVolume) {
+          entity.polylineVolume.material = entity.polylineVolume._prevMaterial;
+          entity.polylineVolume._prevMaterial = null;
+        }
+
+        if (entity.box) {
+          entity.box.material = entity.box._prevMaterial;
+          entity.box._prevMaterial = null;
+        }
+
+        if (entity.ellipsoid) {
+          entity.ellipsoid.material = entity.ellipsoid._prevMaterial;
+          entity.ellipsoid._prevMaterial = null;
+        }
+
+        if (entity.wall) {
+          entity.wall.material = entity.wall._prevMaterial;
+          entity.wall._prevMaterial = null;
+        }
+
+        if (entity.cylinder) {
+          entity.cylinder.material = entity.cylinder._prevMaterial;
+          entity.cylinder._prevMaterial = null;
+        }
+
+        if (entity.ellipse) {
+          entity.ellipse.material = entity.ellipse._prevMaterial;
+          entity.ellipse._prevMaterial = null;
+        }
       }
     }
 
