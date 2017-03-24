@@ -139,6 +139,12 @@
           entity.rectangle._prevMaterial = null;
         }
 
+        if (entity.polyline) {
+          entity.polyline.material = entity.polyline._prevMaterial;
+          entity.polyline._prevMaterial = null;
+        }
+
+
         if (entity.polylineVolume) {
           entity.polylineVolume.material = entity.polylineVolume._prevMaterial;
           entity.polylineVolume._prevMaterial = null;
